@@ -1,13 +1,17 @@
 'use strict';
 
 import React from 'react';
-import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import warning from 'warning';
 import classNames from 'classnames';
 import {uniqueId} from 'lodash';
 
 import './text-field.css';
+
+/*
+* TODO:
+*
+*  - hint text
+* */
 
 /*
 * Component Text Field
@@ -83,10 +87,6 @@ export default React.createClass({
          */
         type: React.PropTypes.string,
 
-        /**
-         * If true, shows the underline for the text field.
-         */
-        underlineShow: React.PropTypes.bool,
 
         /**
          * The value of the text field.
@@ -99,26 +99,31 @@ export default React.createClass({
         isFocused:  React.PropTypes.bool
     },
 
-    mixin: PureRenderMixin,
+    mixins: [PureRenderMixin],
 
     getDefaultProps() {
         return {
             disabled: false,
             type: 'text',
-            underlineShow: true,
             isFocused: false
         }
     },
 
     getInitialState() {
         return {
+            valueInput: this.props.value || this.props.defaultValue || undefined,
             isFocused: this.props.isFocused,
+            isValid: true,
             errorText: this.props.errorText
         }
     },
 
     componentWillMount() {
         this._uniqueId = uniqueId('input_');
+    },
+
+    componentWillReceiveProps(nextProps, nextContext) {
+
     },
 
     _onBlur(e) {
@@ -130,33 +135,59 @@ export default React.createClass({
     },
 
     _onKeyDown(e) {
+        if (e.keyCode === 13 && this.props.onEnterKeyDown)
+            this.props.onEnterKeyDown(e);
 
+        if (this.props.onKeyDown)
+            this.props.onKeyDown(e);
+    },
+
+    _onChange(e) {
+        this.setState({
+            valueInput: e.target.value,
+            isValid: e.target.validity.valid
+        });
+
+        if (this.props.onChange)
+            this.props.onChange(e);
     },
 
     render() {
-        const {type} = this.props,
+        const {
+            type,
+            id,
+            errorText,
+            disabled,
+            isFocused,
+            floatingLabelText,
+            hintText,
+            ...other} = this.props,
 
         inputProps = {
-            id: this._uniqueId,
-            className: 'textfield__input',
+            id: id || this._uniqueId,
+            className: 'textfield__input ' + this.props.className || '',
             type: type,
-            disabled: this.props.disabled,
+            disabled: disabled,
+            focus: isFocused,
             onBlur: this._onBlur,
             onFocus: this._onFocus,
-            onKeyDown: this._onKeyDown
+            onKeyDown: this._onKeyDown,
+            onChange: this._onChange
         };
 
-        var wrapClass = classNames({
+        let wrapClass = classNames({
             'textfield': true,
-            'textfield--floating-label': !!this.props.floatingLabelText,
-            'is-focused': this.state.isFocused
+            'textfield--floating-label': Boolean(floatingLabelText),
+            'is-focused': this.state.isFocused,
+            'is-dirty': Boolean(this.state.valueInput),
+            'is-invalid': !this.state.isValid
         });
 
-        let errorTextElement = this.props.errorText
-            ? (<div className="textfield-error"> { this.props.errorText }</div>)
+        let errorTextElement = errorText
+            ? (<div className="textfield__error"> { errorText }</div>)
             : null;
 
-        let inputElement = (<input {...inputProps} />);
+        let inputElement = (<input {...inputProps} {...other} />);
 
         let labelElement = (
             <label className="textfield__label" htmlFor={this._uniqueId}>
@@ -166,10 +197,10 @@ export default React.createClass({
 
         return (
             <div className={wrapClass}>
-                {inputElement}
-                {labelElement}
+                { inputElement }
+                { labelElement }
+                { errorTextElement }
             </div>
         );
     }
-
 });
