@@ -1,0 +1,63 @@
+.root {
+    display: flex;
+    max-width: 96vw;
+    max-height: 96vh;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 0.2rem;
+    box-shadow: 0 19px 60px rgba(0, 0, 0, 0.3), 0 15px 20px rgba(0, 0, 0, 0.22);
+    opacity: 0;
+    transition-delay: 0.07s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.35s;
+    transition-property: opacity, transform;
+    transform: translateY(-4rem);
+}
+
+.root.active {
+    opacity: 1;
+    transform: translateY(0%);
+}
+
+.small {
+    width: 30vw;
+}
+
+.normal {
+    width: 50vw;
+}
+
+.large {
+    width: 96vw;
+}
+
+.title {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: .02em;
+    flex-grow: 0;
+    margin-bottom: 1.6rem;
+    color: black;
+}
+
+.body {
+    flex-grow: 2;
+    padding: 2.4rem;
+    overflow-y: auto;
+    color: #757575;
+}
+
+.navigation {
+    flex-grow: 0;
+    padding: 0.8rem;
+    text-align: right;
+}
+
+.button {
+    min-width: 0;
+    padding-right: 0.8rem;
+    padding-left: 0.8rem;
+    margin-left: 0.8rem;
+}

@@ -1,0 +1,61 @@
+.root {
+    width: 100%;
+    font-size: 1.2rem;
+    color: #757575;
+    text-align: left;
+}
+
+.root tr {
+    height: 48px;
+    line-height: 48px;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.12);
+}
+
+.root th {
+    font-weight: 700;
+}
+
+.root th:first-letter {
+    text-transform: capitalize;
+}
+
+.root th, .root td {
+    position: relative;
+    padding: 0 1.8rem;
+}
+
+.root th.selectable, .root td.selectable {
+    width: 1.8rem;
+    padding-right: 0;
+}
+
+.root th.selectable > *, .root td.selectable > * {
+    margin: 0;
+}
+
+.row {
+    transition: background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.row:last-child {
+    border-color: transparent;
+}
+
+.row > td > input {
+    display: block;
+    width: 100%;
+    background-color: transparent;
+    border: 0;
+}
+
+.selected, .row:hover {
+    background-color: #eee;
+}
+
+.editable > * {
+    cursor: pointer;
+}
+
+.actions {
+    width: 60px;
+}

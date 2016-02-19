@@ -1,9 +1,10 @@
 'use strict';
 
 import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+/*import PureRenderMixin from 'react-addons-pure-render-mixin';*/
+import classNames from 'classnames';
 
-import './paper.css';
+import style from  './paper.css';
 
 export default React.createClass({
 
@@ -19,9 +20,9 @@ export default React.createClass({
         zDepth: React.PropTypes.number
     },
 
-    mixin: [
+   /* mixin: [
         PureRenderMixin
-    ],
+    ],*/
 
     getDefaultProps() {
         return {
@@ -29,11 +30,12 @@ export default React.createClass({
         }
     },
 
+
     render() {
-        const style = 'paper paper--depth-' + this.props.zDepth;
+        const classWrapper = classNames(style.paper,[style[`paper--depth-${this.props.zDepth}`]], this.props.className);
 
         return (
-            <div className={style}>
+            <div className={classWrapper}>
                 { this.props.children }
             </div>
         )

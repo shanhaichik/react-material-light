@@ -1,0 +1,149 @@
+.list {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    padding: 0.8rem 0;
+    text-align: left;
+    white-space: nowrap;
+    list-style: none;
+}
+
+.subheader {
+    padding-left: 1.6rem;
+    margin: -0.8rem 0 0;
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 4.8rem;
+    color: #757575;
+}
+
+.divider {
+    height: 0.1rem;
+    margin: -0.1rem 0 0;
+    background-color: #eeeeee;
+    border: 0;
+}
+
+.divider.inset {
+    margin-right: 1.6rem;
+    margin-left: 7.2rem;
+}
+
+.list + .divider {
+    margin-top: -0.8rem;
+}
+
+.listItem ~ .divider {
+    margin-top: 0.8rem;
+    margin-bottom: 0.8rem;
+}
+
+.listItem {
+    position: relative;
+}
+
+.listItem > [data-react-toolbox='ripple'] {
+    overflow: hidden;
+}
+
+.item {
+    position: relative;
+    display: flex;
+    min-height: 4.8rem;
+    align-items: center;
+    padding: 0 1.6rem;
+    color: #212121;
+}
+
+.item.selectable:not(.disabled):hover {
+    cursor: pointer;
+    background-color: #eeeeee;
+}
+
+.item.withLegend {
+    height: 7.2rem;
+}
+
+.item.disabled {
+    pointer-events: none;
+}
+
+.item.disabled:not(.checkboxItem) {
+    opacity: .5;
+}
+
+.item.disabled > .checkbox > [data-role='label'] {
+    opacity: .5;
+}
+
+.checkbox {
+    display: flex;
+    width: 100%;
+    min-height: 4.8rem;
+    align-items: center;
+    margin: 0;
+    cursor: pointer;
+}
+
+.checkbox > [data-role='checkbox'] {
+    margin-right: 3.8rem;
+}
+
+.checkbox > [data-role='label'] {
+    padding-left: 0;
+}
+
+.ripple {
+    color: #757575;
+}
+
+.text {
+    flex-grow: 1;
+}
+
+.caption {
+    display: block;
+    font-size: 1.6rem;
+    color: #212121;
+}
+
+.legend {
+    display: block;
+    padding-top: 0.3rem;
+    font-size: 1.4rem;
+    color: #757575;
+    white-space: normal;
+}
+
+.avatar {
+    display: flex;
+    width: 4rem;
+    height: 4rem;
+    flex: 0 0 auto;
+    margin: 0.8rem 1.6rem 0.8rem 0;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.right, .left {
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+}
+
+.right.icon, .left.icon {
+    font-size: 2.4rem;
+    color: #757575;
+}
+
+.right {
+    margin-left: 1.6rem;
+}
+
+.left.icon {
+    width: 1.8rem;
+    margin-right: 3.8rem;
+}
+.pointer {
+    cursor: pointer;
+}

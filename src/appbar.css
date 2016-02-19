@@ -1,0 +1,25 @@
+.root {
+    display: flex;
+    height: 6.4rem;
+    align-items: center;
+    padding: 0 2.4rem;
+    color: white;
+    background: #303f9f;
+}
+
+.root:not(.flat) {
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+}
+
+.root.fixed {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.root a {
+    color: white;
+}

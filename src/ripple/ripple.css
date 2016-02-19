@@ -1,0 +1,39 @@
+.normal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 100;
+    pointer-events: none;
+    background-color: currentColor;
+    border-radius: 50%;
+    transform-origin: 50% 50%;
+}
+
+.wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.normal {
+    transition-duration: 800ms;
+}
+
+.normal.restarting {
+    opacity: 0.3;
+    transition-property: none;
+}
+
+.normal.active {
+    opacity: 0.3;
+    transition-property: transform;
+}
+
+.normal:not(.active):not(.restarting) {
+    opacity: 0;
+    transition-property: opacity, transform;
+}
