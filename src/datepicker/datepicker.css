@@ -1,0 +1,162 @@
+.input > [role="input"] {
+    cursor: pointer;
+}
+
+.header {
+    padding: 1.6rem 2rem;
+    color: white;
+    cursor: pointer;
+    background-color: #3f51b5;
+}
+
+.year {
+    display: inline-block;
+    font-size: 1.4rem;
+    transition: opacity, font-size 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.date {
+    display: block;
+    font-weight: 500;
+    text-transform: capitalize;
+    transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wrapper {
+    padding: 1rem 0.5rem 0;
+}
+
+.display-years .date {
+    opacity: 0.6;
+}
+
+.display-years .year {
+    font-size: 1.6rem;
+}
+
+.display-months .year {
+    opacity: 0.6;
+}
+
+.dialog {
+    width: 33rem;
+}
+
+.dialog > [role="body"] {
+    padding: 0;
+}
+
+.dialog > [role="navigation"] > .button {
+    color: #3f51b5;
+}
+
+.dialog > [role="navigation"] > .button:hover {
+    background: rgba(63, 81, 181, 0.2);
+}
+
+.dialog > [role="navigation"] > .button:focus:not(:active) {
+    background: rgba(63, 81, 181, 0.2);
+}
+
+.root {
+    position: relative;
+    height: 27rem;
+    overflow: hidden;
+    font-size: 1.4rem;
+    line-height: 3rem;
+    text-align: center;
+    background: white;
+}
+
+.root .prev, .root .next {
+    position: absolute;
+    top: 0;
+    z-index: 100;
+    height: 3.6rem;
+    cursor: pointer;
+    opacity: .7;
+}
+
+.root .prev {
+    left: 0;
+}
+
+.root .next {
+    right: 0;
+}
+
+.title {
+    display: inline-block;
+    font-weight: 500;
+    line-height: 3rem;
+}
+
+.years {
+    height: 100%;
+    overflow-y: auto;
+    font-size: 1.8rem;
+}
+
+.years > li {
+    line-height: 2.4;
+    cursor: pointer;
+}
+
+.years > li.active {
+    font-size: 2.4;
+    color: #3f51b5;
+}
+
+.week {
+    display: flex;
+    height: 3rem;
+    flex-wrap: wrap;
+    font-size: 1.3rem;
+    line-height: 3rem;
+    opacity: .5;
+}
+
+.week > span {
+    flex: 0 0 14.28571%;
+}
+
+.days {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1.3rem;
+}
+
+.day {
+    flex: 0 0 14.28571%;
+    padding: 0.2rem;
+}
+
+.day > span {
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    line-height: 3rem;
+    border-radius: 50%;
+}
+
+.day:hover:not(.active):not(.disabled) > span {
+    color: white;
+    background: rgba(63, 81, 181, 0.21);
+}
+
+.day.active > span {
+    color: white;
+    background: #3f51b5;
+}
+
+.day:hover:not(.disabled) > span {
+    cursor: pointer;
+}
+
+.day.disabled {
+    opacity: 0.25;
+}
+
+.month {
+    background-color: white;
+}

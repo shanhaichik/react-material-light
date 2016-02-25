@@ -1,0 +1,137 @@
+.root {
+    position: relative;
+    padding: 12px 0;
+}
+
+.root.withIcon {
+    margin-left: 4.8rem;
+}
+
+.icon {
+    position: absolute;
+    top: 1.6rem;
+    left: -4.8rem;
+    display: block;
+    width: 4.8rem;
+    height: 4.8rem;
+    font-size: 2.4rem !important;
+    line-height: 4.8rem !important;
+    color: rgba(0, 0, 0, 0.26);
+    text-align: center;
+    transition: color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input {
+    display: block;
+    width: 100%;
+    padding: 0.8rem 0;
+    font-size: 1.6rem;
+    color: #212121;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    outline: none;
+}
+
+.input:focus ~ .bar:before, .input:focus ~ .bar:after {
+    width: 50%;
+}
+
+.input:focus ~ .label:not(.fixed) {
+    color: #3f51b5;
+}
+
+.input:focus ~ .icon {
+    color: #3f51b5;
+}
+
+.input:focus ~ .label:not(.fixed), .input.filled ~ .label:not(.fixed), .input[type='date'] ~ .label:not(.fixed), .input[type='time'] ~ .label:not(.fixed) {
+    top: 0.6rem;
+    font-size: 1.2rem;
+}
+
+.input.filled ~ .label.fixed {
+    display: none;
+}
+
+.label {
+    position: absolute;
+    top: 3.2rem;
+    left: 0;
+    font-size: 1.6rem;
+    line-height: 1.6rem;
+    color: rgba(0, 0, 0, 0.26);
+    pointer-events: none;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.35s;
+    transition-property: top, font-size, color;
+}
+
+.bar {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.bar:before, .bar:after {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.2s;
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    content: "";
+    background-color: #3f51b5;
+    transition-property: width, background-color;
+}
+
+.bar:before {
+    left: 50%;
+}
+
+.bar:after {
+    right: 50%;
+}
+
+.error, .counter {
+    margin-bottom: -2rem;
+    font-size: 1.2rem;
+    line-height: 2rem;
+    color: #de3226;
+}
+
+.counter {
+    position: absolute;
+    right: 0;
+    color: rgba(0, 0, 0, 0.26);
+}
+
+.disabled > .input {
+    color: rgba(0, 0, 0, 0.26);
+    border-bottom-style: dotted;
+}
+
+.errored {
+    padding-bottom: 0;
+}
+
+.errored > .input {
+    margin-top: 1px;
+    border-bottom-color: #de3226;
+}
+
+.errored > .input:focus ~ .label:not(.fixed) {
+    color: #de3226;
+}
+
+.errored > .input:focus ~ .bar:before, .errored > .input:focus ~ .bar:after {
+    background-color: #de3226;
+}
+
+.errored > .counter, .errored > .label {
+    color: #de3226;
+}
+
+.hidden {
+    display: none;
+}

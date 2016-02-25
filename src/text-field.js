@@ -111,7 +111,7 @@ export default React.createClass({
 
     getInitialState() {
         return {
-            valueInput: this.props.value || this.props.defaultValue || undefined,
+            valueInput: this.props.value || undefined,
             isFocused: this.props.isFocused,
             isValid: true,
             errorText: this.props.errorText
@@ -123,7 +123,7 @@ export default React.createClass({
     },
 
     componentWillReceiveProps(nextProps, nextContext) {
-
+        this.setState({ valueInput: nextProps.value,})
     },
 
     _onBlur(e) {

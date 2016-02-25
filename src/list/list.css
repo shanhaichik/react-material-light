@@ -20,7 +20,7 @@
 .divider {
     height: 0.1rem;
     margin: -0.1rem 0 0;
-    background-color: #eeeeee;
+    background-color: rgba(117, 117, 117, 0.35);
     border: 0;
 }
 

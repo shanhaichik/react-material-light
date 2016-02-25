@@ -8,12 +8,15 @@ import AppBar from './appbar';
 import FontIcon from './fontIcon';
 import SidePanel from './sidePanel';
 import Grid from './grid';
+import Paginator from './pagination/paginator';
 
 import { IconMenu, MenuItem, MenuDivider, Menu } from './menu';
 import { List, ListItem, ListItemContent, ListDivider, ListSubHeader, ListCheckbox } from './list'
 
 import Table from './table/table';
 import Collapse from './collapse/collapse';
+import Dropdown from './dropdown/dropDown';
+import DatePicker from './datepicker/datepicker';
 
 
 export default {
@@ -30,5 +33,8 @@ export default {
     List, ListItem, ListItemContent, ListDivider, ListSubHeader, ListCheckbox,
     Table,
     Collapse,
-    Grid
+    Grid,
+    Dropdown,
+    Paginator,
+    DatePicker
 }

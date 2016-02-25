@@ -1,0 +1,138 @@
+.root {
+    position: relative;
+}
+
+.root:not(.active) > .values {
+    max-height: 0;
+    visibility: hidden;
+}
+
+.root.active > .label, .root.active > .value {
+    opacity: .5;
+}
+
+.root.active > .values {
+    max-height: 45vh;
+    visibility: visible;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
+}
+
+.root:not(.up) > .values {
+    top: 0;
+    bottom: auto;
+}
+
+.root.up > .values {
+    top: auto;
+    bottom: 0;
+}
+
+.root.disabled {
+    pointer-events: none;
+    cursor: default;
+}
+
+.value > input {
+    cursor: pointer;
+}
+
+.value:after {
+    position: absolute;
+    top: 50%;
+    right: 0.8rem;
+    width: 0;
+    height: 0;
+    content: "";
+    border-top: 0.54857rem solid rgba(0, 0, 0, 0.12);
+    border-right: 0.54857rem solid transparent;
+    border-left: 0.54857rem solid transparent;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.field {
+    position: relative;
+    padding: 12px 0;
+    cursor: pointer;
+}
+
+.field.errored {
+    padding-bottom: 0;
+}
+
+.field.errored > .label {
+    color: #de3226;
+}
+
+.field.errored > .templateValue {
+    border-bottom: 1px solid #de3226;
+}
+
+.field.disabled {
+    pointer-events: none;
+    cursor: normal;
+}
+
+.field.disabled > .templateValue {
+    border-bottom-style: dotted;
+    opacity: .7;
+}
+
+.templateValue {
+    position: relative;
+    min-height: 3.84rem;
+    padding: 0.8rem 0;
+    color: #212121;
+    background-color: transparent;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.label {
+    position: absolute;
+    top: 0.6rem;
+    left: 0;
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    color: rgba(0, 0, 0, 0.26);
+}
+
+.error {
+    margin-bottom: -2rem;
+    font-size: 1.2rem;
+    line-height: 2rem;
+    color: #de3226;
+}
+
+.values {
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    list-style: none;
+    background-color: white;
+    border-radius: 0.2rem;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.35s;
+    transition-property: max-height, box-shadow;
+}
+
+.values::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.values > * {
+    position: relative;
+    padding: 1rem;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.values > *:hover {
+    background-color: #eeeeee;
+}
+
+.values > *.selected {
+    color: #3f51b5;
+}
