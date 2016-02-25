@@ -4,135 +4,63 @@ import React from 'react';
 import classNames from 'classnames';
 import {uniqueId} from 'lodash';
 import style from './text-field.css';
-/*
- * TODO:
- *
- *  - hint text
- * */
 
-/*
- * Component Text Field
- * */
-export default React.createClass({
+class TextField extends React.Component {
+    constructor(props) {
+        super(props);
 
-    propType: {
-        children: React.PropTypes.node,
+        this._onBlur = this._onBlur.bind(this);
+        this._onFocus = this._onFocus.bind(this);
+        this._onKeyDown = this._onKeyDown.bind(this);
+        this._onChange = this._onChange.bind(this);
+    }
 
-        /**
-         * The css class name of the root element.
-         */
+    static propTypes = {
+        children: React.PropTypes.any,
         className: React.PropTypes.string,
-
-        /**
-         * The text string to use for the default value.
-         */
-        defaultValue: React.PropTypes.any,
-
-        /**
-         * Disables the text field if set to true.
-         */
         disabled: React.PropTypes.bool,
-
-        /**
-         * The error content to display.
-         */
-        errorText: React.PropTypes.node,
-
-        /**
-         * The content to use for the floating label element.
-         */
         floatingLabelText: React.PropTypes.node,
-
-        /**
-         * The hint content to display.
-         */
-        hintText: React.PropTypes.node,
-
-        /**
-         * The id prop for the text field.
-         */
-        id: React.PropTypes.string,
-
-        /**
-         * Callback function that is fired when the textfield loses focus.
-         */
         onBlur: React.PropTypes.func,
-
-        /**
-         * Callback function that is fired when the textfield's value changes.
-         */
         onChange: React.PropTypes.func,
-
-        /**
-         * The function to call when the user presses the Enter key.
-         */
         onEnterKeyDown: React.PropTypes.func,
-
-        /**
-         * Callback function that is fired when the textfield gains focus.
-         */
         onFocus: React.PropTypes.func,
-
-        /**
-         * Callback function fired when key is pressed down.
-         */
         onKeyDown: React.PropTypes.func,
-
-        /**
-         * Specifies the type of input to display
-         * such as "password" or "text".
-         */
         type: React.PropTypes.string,
-
-
-        /**
-         * The value of the text field.
-         */
         value: React.PropTypes.any,
-
-        /**
-         * Focus input on init
-         */
         isFocused:  React.PropTypes.bool,
+        floating:React.PropTypes.bool,
+        errorText: React.PropTypes.node
+    };
 
-        floating:React.PropTypes.bool
-    },
+    static defaultProps = {
+        disabled: false,
+        type: 'text',
+        isFocused: false,
+        floating: false
+    };
 
-    /*mixins: [PureRenderMixin],*/
+    state = {
+        value: this.props.value || undefined,
+        isFocused: this.props.isFocused,
+        isValid: true,
+        errorText: this.props.errorText
+    };
 
-    getDefaultProps() {
-        return {
-            disabled: false,
-            type: 'text',
-            isFocused: false,
-            floating: false
-        }
-    },
-
-    getInitialState() {
-        return {
-            valueInput: this.props.value || undefined,
-            isFocused: this.props.isFocused,
-            isValid: true,
-            errorText: this.props.errorText
-        }
-    },
+    componentWillReceiveProps(nextProps, nextContext) {
+        this.setState({ value: nextProps.value})
+    }
 
     componentWillMount() {
         this._uniqueId = uniqueId('input_');
-    },
-
-    componentWillReceiveProps(nextProps, nextContext) {
-        this.setState({ valueInput: nextProps.value,})
-    },
+    }
 
     _onBlur(e) {
         this.setState({isFocused: false});
-    },
+    }
 
     _onFocus(e) {
         this.setState({isFocused: true});
-    },
+    }
 
     _onKeyDown(e) {
         if (e.keyCode === 13 && this.props.onEnterKeyDown)
@@ -140,17 +68,18 @@ export default React.createClass({
 
         if (this.props.onKeyDown)
             this.props.onKeyDown(e);
-    },
+    }
 
     _onChange(e) {
+        console.log(e.target.value);
         this.setState({
-            valueInput: e.target.value,
+            value: e.target.value,
             isValid: e.target.validity.valid
         });
 
         if (this.props.onChange)
             this.props.onChange(e);
-    },
+    }
 
     render() {
         const {
@@ -161,47 +90,54 @@ export default React.createClass({
                 isFocused,
                 floatingLabelText,
                 hintText,
+                value,
+                onChange,
+                onKeyDown,
+                onFocus,
+                onBlur,
                 ...other} = this.props,
 
             inputProps = {
                 id: id || this._uniqueId,
-                className: classNames({[style.textfield__input]:true}, this.props.className),
+                className: classNames(style.textfield__input, this.props.className),
                 type: type,
                 disabled: disabled,
                 focus: isFocused,
                 onBlur: this._onBlur,
                 onFocus: this._onFocus,
                 onKeyDown: this._onKeyDown,
-                onChange: this._onChange
+                onChange: this._onChange,
+                value: this.state.value
             };
 
-        let wrapClass = classNames({
-            [style.textfield]: true,
+        const wrapClass = classNames(style.textfield, {
             [style['textfield--floating-label']]: this.props.floating,
             [style['textfield__no-floating']]: !this.props.floating,
             [style['is-focused']]: this.state.isFocused,
-            [style['is-dirty']]: Boolean(this.state.valueInput),
+            [style['is-dirty']]: Boolean(this.state.value),
             [style['is-invalid']]: !this.state.isValid
         });
 
-        let errorTextElement = errorText
+        const errorTextElement = errorText
             ? (<div className={style.textfield__error}> { errorText }</div>)
             : null;
 
-        let inputElement = (<input {...inputProps} {...other} />);
-
-        let labelElement = (
+        const labelElement = (
             <label className={style.textfield__label} htmlFor={this._uniqueId}>
                 { this.props.floatingLabelText }
             </label>
         );
 
+        const inputElement = (<input {...inputProps} {...other} />);
+
         return (
             <div className={wrapClass}>
                 { inputElement }
-                {  labelElement }
+                { labelElement }
                 { errorTextElement }
             </div>
-        );
+        )
     }
-});
+}
+
+export default TextField;
