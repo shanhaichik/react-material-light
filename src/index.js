@@ -1,4 +1,3 @@
-import TextField from './text-field';
 import Paper from './paper';
 import Button from './button';
 import IconButton from './iconButton';
@@ -9,6 +8,7 @@ import FontIcon from './fontIcon';
 import SidePanel from './sidePanel';
 import Grid from './grid';
 import Paginator from './pagination/paginator';
+import TextField from './text-field';
 
 import { IconMenu, MenuItem, MenuDivider, Menu } from './menu';
 import { List, ListItem, ListItemContent, ListDivider, ListSubHeader, ListCheckbox } from './list'

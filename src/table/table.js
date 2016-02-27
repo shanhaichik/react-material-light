@@ -1,15 +1,15 @@
 'use strict';
 
 import React, { Component, PropTypes } from 'react';
+import PureRender from 'react-pure-render-decorator';
 import TableHead from './tableHead';
 import TableRow from './tableRow';
 import classNames from 'classnames';
-import {isObject, isArray} from 'lodash';
+import {isObject, isArray, isEqual} from 'lodash';
 
 import style from './table.css'
 
-
-class Table extends React.Component {
+export default class Table extends React.Component {
 
     static propTypes = {
         /*
@@ -103,6 +103,10 @@ class Table extends React.Component {
         }
     };
 
+    shouldComponentUpdate(props, state){
+        return !isEqual(props, this.props);
+    }
+
     renderHead () {
         if (this.props.heading) {
             const {model, selected, source, selectable, headers} = this.props;
@@ -175,5 +179,3 @@ class Table extends React.Component {
         );
     }
 }
-
-export default Table;

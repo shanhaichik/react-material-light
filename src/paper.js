@@ -1,38 +1,32 @@
 'use strict';
 
 import React from 'react';
-/*import PureRenderMixin from 'react-addons-pure-render-mixin';*/
 import classNames from 'classnames';
+import {isEqual} from 'lodash';
 
 import style from  './paper.css';
 
-export default React.createClass({
+class Paper extends React.Component {
 
-    propTypes: {
-        /**
-         * Children passed into the paper element.
-         */
-        children: React.PropTypes.node,
+    static propTypes: {
+
 
         /**
          * This number represents the zDepth of the paper shadow.
          */
-        zDepth: React.PropTypes.number
-    },
+        depth: React.PropTypes.number
+    };
 
-   /* mixin: [
-        PureRenderMixin
-    ],*/
+    static defaultProps = {
+        depth: 1
+    };
 
-    getDefaultProps() {
-        return {
-            zDepth: 1
-        }
-    },
-
+    shouldComponentUpdate(props){
+        return !isEqual(props, this.props);
+    }
 
     render() {
-        const classWrapper = classNames(style.paper,[style[`paper--depth-${this.props.zDepth}`]], this.props.className);
+        const classWrapper = classNames(style.paper,[style[`paper--depth-${this.props.depth}`]], this.props.className);
 
         return (
             <div className={classWrapper}>
@@ -41,4 +35,6 @@ export default React.createClass({
         )
     }
 
-});
+}
+
+export default Paper;

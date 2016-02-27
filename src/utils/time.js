@@ -23,7 +23,7 @@ export default {
         switch (month) {
             default: return 'Unknown';
             case 0: return 'Январь';
-            case 1: return 'Фквраль';
+            case 1: return 'Февраль';
             case 2: return 'Март';
             case 3: return 'Апрель';
             case 4: return 'Май';

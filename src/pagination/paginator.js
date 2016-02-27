@@ -94,7 +94,7 @@ class Paginator extends React.Component {
     renderPaginationList() {
         const _tempMap = new Array(this.props.pageNum).fill(0);
         // Если кол-во страницы меньше или равно диапозону показа, по просто выводим список
-        if (this.props.pageNum <= this.props.pageRange) {
+        //if (this.props.pageNum <= this.props.pageRange) {
             return _tempMap.map(function(el, i) {
                 const classItem = ClassNames(
                     style.paginate__item, {
@@ -108,12 +108,12 @@ class Paginator extends React.Component {
                     </li>
                )
             }, this);
-        }
-        else {
+       // }
+       /* else {
           //TODO
 
 
-        }
+        }*/
     }
 
     render() {
