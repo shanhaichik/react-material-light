@@ -71,6 +71,7 @@ class TextField extends React.Component {
     }
 
     _onChange(e) {
+        console.log(e.target.value);
         this.setState({
             value: e.target.value,
             isValid: e.target.validity.valid
