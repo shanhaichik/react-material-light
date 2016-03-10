@@ -3,6 +3,7 @@
     font-size: 1.2rem;
     color: #757575;
     text-align: left;
+    /*table-layout: fixed;*/
 }
 
 .root tr {
@@ -58,4 +59,11 @@
 
 .actions {
     width: 60px;
+}
+
+.ellipsis {
+    max-width: inherit;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

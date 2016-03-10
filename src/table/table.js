@@ -1,7 +1,6 @@
 'use strict';
 
 import React, { Component, PropTypes } from 'react';
-import PureRender from 'react-pure-render-decorator';
 import TableHead from './tableHead';
 import TableRow from './tableRow';
 import classNames from 'classnames';
@@ -102,10 +101,6 @@ export default class Table extends React.Component {
             this.props.onChange(index, key, value);
         }
     };
-
-    shouldComponentUpdate(props, state){
-        return !isEqual(props, this.props);
-    }
 
     renderHead () {
         if (this.props.heading) {
